@@ -1,0 +1,9 @@
+{
+  "inputs": [],
+  "servers": {
+    "learnpython-mcp": {
+      "command": "/Users/BenjaminHuang/ben-git/AI-study/Agent-MCP/Let's Learn MCP_Python/mcp-env/bin/uv",
+      "args": ["--directory", ".", "run", "prompts_server.py"]
+    }
+  }
+}
