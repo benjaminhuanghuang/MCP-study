@@ -14,3 +14,22 @@ https://modelcontextprotocol.io/docs/develop/build-server
 npm i @modelcontextprotocol/sdk zod
 npm i -D @types/node typescript
 ```
+
+Run MCP
+
+```sh
+npx @modelcontextprotocol/inspector
+```
+
+Add MCP to vs code or cursor
+
+```json
+{
+  "mcpServers": {
+    "my-first-mcp": {
+      "command": "node",
+      "args": ["/my-first-mcp/build/index.js"]
+    }
+  }
+}
+```

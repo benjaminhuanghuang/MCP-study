@@ -34,6 +34,52 @@ server.registerTool(
   }
 );
 
+server.registerTool(
+  "get_github_repos",
+  {
+    description: "Get github repos from the user name",
+    inputSchema: z.object({
+      username: z.string().describe("The GitHub username"),
+    }),
+    outputSchema: z.object({
+      repos: z.array(z.string()).describe("List of GitHub repositories"),
+    }),
+  },
+  async ({ username }: { username: string }) => {
+    const res = await fetch(`https://api.github.com/users/${username}/repos`, {
+      headers: { "User-Agent": "MCP-Server" },
+    });
+
+    if (!res.ok) throw new Error("Github API error!");
+
+    const repos = await res.json();
+
+    const repoList = repos
+      .map((repo: any, i: number) => `${i + 1}. ${repo.name}`)
+      .join("\n\n");
+
+    const repoNames = (Array.isArray(repos) ? repos : [])
+      .map((repo: any) => repo?.name)
+      .filter((name: any) => typeof name === "string");
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Github repositories for ${username}: (${repoNames.length})`,
+        },
+        {
+          type: "text",
+          text: repoList,
+        },
+      ],
+      structuredContent: {
+        repos: repoNames,
+      },
+    };
+  }
+);
+
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
