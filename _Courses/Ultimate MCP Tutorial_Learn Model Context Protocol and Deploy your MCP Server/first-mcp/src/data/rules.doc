@@ -1,0 +1,8 @@
+{
+  id: 7,
+  category: "Trash",
+  title: "Proper Waste Disposal",
+  rule: "Dispose of trash in designated bins and follow recycling guidelines",
+  description:
+    "Trash must be placed in proper containers. Recycling is mandatory where available.",
+},
