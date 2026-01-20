@@ -110,6 +110,27 @@ server.registerResource(
     };
   }
 );
+server.registerPrompt(
+  "explain-sql",
+  z.object({
+    sql: z.string().describe("The SQL query to explain"),
+  }),
+  async (args) => {
+    const { sql } = args;
+    return {
+      messages: [
+        {
+          role: "user",
+          content: {
+            type: "text",
+            text: `Give me a detailed explanation of the following SQL query in plain English:${sql} Make it very detailed 
+            and specific for a beginner to understand.`,
+          },
+        },
+      ],
+    };
+  }
+);
 
 async function main() {
   const transport = new StdioServerTransport();

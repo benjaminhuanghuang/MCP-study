@@ -33,3 +33,9 @@ Add MCP to vs code or cursor
   }
 }
 ```
+
+## Remote MCP
+
+```sh
+npm create cloudflare@latest -- --template=cloudflare/ai/demos/remote-mcp-authless
+```
